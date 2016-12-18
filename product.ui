@@ -170,6 +170,19 @@
      </rect>
     </property>
    </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>440</x>
+      <y>50</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>return</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QTextEdit" name="out">
    <property name="geometry">
@@ -209,7 +222,7 @@
      <string>Search</string>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -244,15 +257,13 @@
        <property name="text">
         <string>price</string>
        </property>
+       <attribute name="buttonGroup">
+        <string notr="true">buttonGroup</string>
+       </attribute>
       </widget>
      </item>
     </layout>
    </widget>
-   <zorder>textEdit</zorder>
-   <zorder></zorder>
-   <zorder>pr</zorder>
-   <zorder>id</zorder>
-   <zorder>name</zorder>
   </widget>
  </widget>
  <resources/>

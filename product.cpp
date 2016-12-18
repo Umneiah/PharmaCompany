@@ -47,6 +47,7 @@ void product::on_radioButton_clicked()
 
 void product::on_UpdateRB_clicked()
 {
+    ui->Ids->clear();
     insert = false;
     dele = false;
     ui->Name->setEnabled(true);
@@ -87,8 +88,11 @@ void product::on_Perform_clicked()
            QString query = "INSERT INTO Medicine (`M_ID`, `Expiration_Date`) VALUES ('"+QString::number(count)+"', CURRENT_TIMESTAMP);";
            l->exec(query);
         }
+        ui->Name->clear();
+        ui->Price->clear();
+        ui->category->clear();
     }else if(dele){
-         QString query = "delete from Product where ID = '"+ui->Ids->currentText()+"';";
+         QString query = "delete from Product where ID = "+ui->Ids->currentText();
          l->exec(query);
          ui->Ids->clear();
          QString query1 = "select ID from Product;";
@@ -101,13 +105,16 @@ void product::on_Perform_clicked()
     }
     else{
         QString query="update Product set ";
+        int y=0;
         if(ui->Name->toPlainText()!="")
         {
             query += "Name = '"+ui->Name->toPlainText()+"'";
+            y = 1;
         }
         if(ui->Price->toPlainText() != "")
         {
-            query += " ,Price = '"+ui->Price->toPlainText()+"'";
+            if(y)query += ", ";
+            query += "Price = '"+ui->Price->toPlainText()+"'";
         }
         query += " where ID = "+ui->Ids->currentText();
         l->exec(query);
@@ -117,6 +124,9 @@ void product::on_Perform_clicked()
             query += " where EID = "+ui->Ids->currentText();
             l->exec(query);
         }
+        ui->Name->clear();
+        ui->Price->clear();
+        ui->category->clear();
     }
 }
 
@@ -124,6 +134,7 @@ void product::on_Perform_clicked()
 
 void product::on_radioButton_4_clicked()
 {
+    ui->Ids->clear();
     ui->category->setEnabled(false);
     ui->Name->setEnabled(false);
     ui->Price->setEnabled(false);
@@ -156,7 +167,7 @@ void product::on_textEdit_textChanged()
             c1 = 1;
         }
         QString query1 = "select ID,Name,Price,Expiration_Date from product as p, Medicine as e where Name = '"+ui->textEdit->toPlainText();
-        query1 += "' AND e.EID = p.ID;";
+        query1 += "' AND e.M_ID = p.ID;";
         l->exec(query1);
         while(l->next())
         {
@@ -176,7 +187,7 @@ void product::on_textEdit_textChanged()
             c1 = 1;
         }
         QString query1 = "select ID,Name,Price,Expiration_Date from product as p, Medicine as e where ID = '"+ui->textEdit->toPlainText();
-        query1 += "' AND e.EID = p.ID;";
+        query1 += "' AND e.M_ID = p.ID;";
         l->exec(query1);
         while(l->next())
         {
@@ -196,7 +207,7 @@ void product::on_textEdit_textChanged()
             c1 = 1;
         }
         QString query1 = "select ID,Name,Price,Expiration_Date from product as p, Medicine as e where Price = '"+ui->textEdit->toPlainText();
-        query1 += "' AND e.EID = p.ID;";
+        query1 += "' AND e.M_ID = p.ID;";
         l->exec(query1);
         while(l->next())
         {
@@ -209,4 +220,9 @@ void product::on_textEdit_textChanged()
     if(c1)o += output;
     if(c2)o += output1;
     ui->out->setText(o);
+}
+
+void product::on_pushButton_clicked()
+{
+
 }

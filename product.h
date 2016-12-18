@@ -37,6 +37,8 @@ private slots:
 
     void on_textEdit_textChanged();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::product *ui;
 };

@@ -7,6 +7,7 @@ employee::employee(QWidget *parent) :
 {
     ui->setupUi(this);
     insert = 0;
+    SearchBool =0;
     fullT = true;
     ui->SSN->setEnabled(false);
     ui->comboBox->addItem("Full Time");
@@ -193,4 +194,91 @@ void employee::on_Back_clicked()
     MainWindow * w = new MainWindow();
     w->show();
     this->close();
+}
+
+void employee::on_Search_textChanged()
+{
+    QString sear = ui->Search->toPlainText();
+    QString qur;
+    switch (SearchBool) {
+    case 0:
+        qur = "SELECT * FROM Employee WHERE SSN = '"+sear+"'";
+        break;
+    case 1:
+        qur = "SELECT * FROM Employee WHERE Name = '"+sear+"'";
+        break;
+    case 2:
+        qur = "SELECT * FROM Employee WHERE Phone = '"+sear+"'";
+        break;
+    case 3:
+        qur = "SELECT * FROM Employee WHERE Salary = '"+sear+"'";
+        break;
+    case 4:
+        qur = "SELECT * FROM Employee WHERE Job_Type = '"+sear+"'";
+        break;
+    case 5:
+        qur = "SELECT * FROM Employee,Department WHERE Dep_number=Department_number AND Department.Name = '"+sear+"'";
+        break;
+    default:
+        break;
+    }
+    l->exec(qur);
+    QStandardItemModel *model = new QStandardItemModel(l->size(),7,this);
+    model->setHorizontalHeaderItem(0, new QStandardItem(QString("SSN")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Name")));
+    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Address")));
+    model->setHorizontalHeaderItem(3, new QStandardItem(QString("Phone")));
+    model->setHorizontalHeaderItem(4, new QStandardItem(QString("Salary")));
+    model->setHorizontalHeaderItem(5, new QStandardItem(QString("Job type")));
+    model->setHorizontalHeaderItem(6, new QStandardItem(QString("Department no")));
+    int index = 0;
+    while(l->next())
+    {
+        QStandardItem *ssn = new QStandardItem(QString(l->value("SSN").toString()));
+        QStandardItem *name = new QStandardItem(QString(l->value("Name").toString()));
+        QStandardItem *add = new QStandardItem(QString(l->value("Address").toString()));
+        QStandardItem *pho = new QStandardItem(QString(l->value("Phone").toString()));
+        QStandardItem *sala = new QStandardItem(QString(l->value("Salary").toString()));
+        QStandardItem *type = new QStandardItem(QString(l->value("Job_Type").toString()));
+        QStandardItem *Depno = new QStandardItem(QString(l->value("Dep_number").toString()));
+        model->setItem(index,0,ssn);
+        model->setItem(index,1,name);
+        model->setItem(index,2,add);
+        model->setItem(index,3,pho);
+        model->setItem(index,4,sala);
+        model->setItem(index,5,type);
+        model->setItem(index,6,Depno);
+        index++;
+    }
+    ui->tableView->setModel(model);
+}
+
+void employee::on_radioButton_2_clicked()
+{
+    SearchBool = 0;
+}
+
+void employee::on_radioButton_3_clicked()
+{
+    SearchBool = 1;
+}
+
+void employee::on_radioButton_4_clicked()
+{
+    SearchBool = 2;
+}
+
+void employee::on_radioButton_5_clicked()
+{
+    SearchBool = 3;
+}
+
+void employee::on_radioButton_6_clicked()
+{
+    SearchBool = 4;
+}
+
+void employee::on_radioButton_7_clicked()
+{
+    SearchBool = 5;
 }

@@ -180,22 +180,9 @@
      </rect>
     </property>
     <property name="text">
-     <string>return</string>
+     <string>Back</string>
     </property>
    </widget>
-  </widget>
-  <widget class="QTextEdit" name="out">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>290</y>
-     <width>521</width>
-     <height>121</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
-   </property>
   </widget>
   <widget class="QGroupBox" name="groupBox_4">
    <property name="geometry">
@@ -264,6 +251,16 @@
      </item>
     </layout>
    </widget>
+  </widget>
+  <widget class="QTableView" name="tableView">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>290</y>
+     <width>491</width>
+     <height>121</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <resources/>

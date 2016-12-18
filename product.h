@@ -4,7 +4,8 @@
 #include <QWidget>
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
-
+#include <QStandardItemModel>
+#include <mainwindow.h>
 namespace Ui {
 class product;
 }

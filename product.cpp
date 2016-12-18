@@ -151,29 +151,33 @@ void product::on_radioButton_4_clicked()
 
 void product::on_textEdit_textChanged()
 {
-    ui->out->clear();
     int c1=0,c2=0;
-    QString output="ID \t Name \t Price \t Category \n";
-    QString output1 = "ID \t Name \t Price \t Expiration_Date \n ";
+    QStringList output;
+    QStringList output1 ;
+    int size = 0;
     if(ui->name->isChecked())
     {
-        QString query = "select ID,Name,Price,Category from product as p,Equipment as e where Name = '"+ui->textEdit->toPlainText();
+        QString query = "select ID,Name,Price,Category from product as p,Equipment as e ,Medicine as m where Name = '"+ui->textEdit->toPlainText();
         query += "' AND e.EID = p.ID;";
         l->exec(query);
         while(l->next())
         {
-            output += l->value(0).toString()+" \t "+l->value(1).toString()+" \t "+l->value(2).toString();
-            output += " \t "+l->value(3).toString()+"\n";
-            c1 = 1;
+            output.append(l->value(0).toString());
+            output.append(l->value(1).toString());
+            output.append(l->value(2).toString());
+            output.append(l->value(3).toString());
+            size++;
         }
         QString query1 = "select ID,Name,Price,Expiration_Date from product as p, Medicine as e where Name = '"+ui->textEdit->toPlainText();
         query1 += "' AND e.M_ID = p.ID;";
         l->exec(query1);
         while(l->next())
         {
-            output1 += l->value(0).toString()+" \t "+l->value(1).toString()+" \t "+l->value(2).toString();
-            output1 += " \t "+l->value(3).toString()+"\n";
-            c2 = 1;
+            output1.append(l->value(0).toString());
+            output1.append(l->value(1).toString());
+            output1.append(l->value(2).toString());
+            output1.append(l->value(3).toString());
+            size++;
         }
 
     }else if(ui->id->isChecked()){
@@ -182,18 +186,22 @@ void product::on_textEdit_textChanged()
         l->exec(query);
         while(l->next())
         {
-            output += l->value(0).toString()+" \t "+l->value(1).toString()+" \t "+l->value(2).toString();
-            output += " \t "+l->value(3).toString()+"\n";
-            c1 = 1;
+            output.append(l->value(0).toString());
+            output.append(l->value(1).toString());
+            output.append(l->value(2).toString());
+            output.append(l->value(3).toString());
+            size++;
         }
         QString query1 = "select ID,Name,Price,Expiration_Date from product as p, Medicine as e where ID = '"+ui->textEdit->toPlainText();
         query1 += "' AND e.M_ID = p.ID;";
         l->exec(query1);
         while(l->next())
         {
-            output1 += l->value(0).toString()+" \t "+l->value(1).toString()+" \t "+l->value(2).toString();
-            output1 += " \t "+l->value(3).toString()+"\n";
-            c2 = 1;
+            output1.append(l->value(0).toString());
+            output1.append(l->value(1).toString());
+            output1.append(l->value(2).toString());
+            output1.append(l->value(3).toString());
+            size++;
         }
     }else if(ui->pr->isChecked())
     {
@@ -202,27 +210,61 @@ void product::on_textEdit_textChanged()
         l->exec(query);
         while(l->next())
         {
-            output += l->value(0).toString()+" \t "+l->value(1).toString()+" \t "+l->value(2).toString();
-            output += " \t "+l->value(3).toString()+"\n";
-            c1 = 1;
+            output.append(l->value(0).toString());
+            output.append(l->value(1).toString());
+            output.append(l->value(2).toString());
+            output.append(l->value(3).toString());
+            size++;
         }
         QString query1 = "select ID,Name,Price,Expiration_Date from product as p, Medicine as e where Price = '"+ui->textEdit->toPlainText();
         query1 += "' AND e.M_ID = p.ID;";
         l->exec(query1);
         while(l->next())
         {
-            output1 += l->value(0).toString()+" \t "+l->value(1).toString()+" \t "+l->value(2).toString();
-            output1 += " \t "+l->value(3).toString()+"\n";
-            c2 = 1;
+            output1.append(l->value(0).toString());
+            output1.append(l->value(1).toString());
+            output1.append(l->value(2).toString());
+            output1.append(l->value(3).toString());
+            size++;
         }
     }
-    QString o = "";
-    if(c1)o += output;
-    if(c2)o += output1;
-    ui->out->setText(o);
+    if(size)
+    {
+        QStandardItemModel *model = new QStandardItemModel(size,4,this);
+        model->setHorizontalHeaderItem(0, new QStandardItem(QString("ID")));
+        model->setHorizontalHeaderItem(1, new QStandardItem(QString("Name")));
+        model->setHorizontalHeaderItem(2, new QStandardItem(QString("Price")));
+        model->setHorizontalHeaderItem(3, new QStandardItem(QString("Category/Expiration_Date")));
+        for(int index = 0 ;index <output.size();index = index + 4)
+        {
+            QStandardItem *id= new QStandardItem(output[index]);
+            QStandardItem *name = new QStandardItem(output[index+1]);
+            QStandardItem *price = new QStandardItem(output[index+2]);
+            QStandardItem *e = new QStandardItem(output[index+3]);
+            model->setItem(index,0,id);
+            model->setItem(index,1,name);
+            model->setItem(index,2,price);
+            model->setItem(index,3,e);
+        }
+        for(int index = 0 ;index <output1.size();index = index + 4)
+        {
+            QStandardItem *id= new QStandardItem(output1[index]);
+            QStandardItem *name = new QStandardItem(output1[index+1]);
+            QStandardItem *price = new QStandardItem(output1[index+2]);
+            QStandardItem *e = new QStandardItem(output1[index+3]);
+            model->setItem(index,0,id);
+            model->setItem(index,1,name);
+            model->setItem(index,2,price);
+            model->setItem(index,3,e);
+        }
+        ui->tableView->setModel(model);
+    }
+
 }
 
 void product::on_pushButton_clicked()
 {
-
+    MainWindow * w = new MainWindow();
+    w->show();
+    this->close();
 }

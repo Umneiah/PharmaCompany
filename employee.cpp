@@ -6,7 +6,7 @@ employee::employee(QWidget *parent) :
     ui(new Ui::employee)
 {
     ui->setupUi(this);
-    insert = true;
+    insert = 0;
     fullT = true;
     ui->SSN->setEnabled(false);
     ui->comboBox->addItem("Full Time");
@@ -20,33 +20,61 @@ employee::~employee()
 
 void employee::on_radioButton_clicked()
 {
-    insert = true;
+    insert = 0;
     ui->SSN->setEnabled(false);
+    ui->Address->setEnabled(1);
+    ui->Name->setEnabled(1);
+    ui->PhoneNum->setEnabled(1);
+    ui->Salary->setEnabled(1);
+    ui->DepartNum->setEnabled(1);
+    ui->comboBox->setEnabled(1);
 }
 
 void employee::on_UpdateRB_clicked()
 {
     //ui->SSN->show();
     ui->SSN->setEnabled(true);
-    insert = false;
+    ui->Address->setEnabled(1);
+    ui->Name->setEnabled(1);
+    ui->PhoneNum->setEnabled(1);
+    ui->Salary->setEnabled(1);
+    ui->DepartNum->setEnabled(1);
+    ui->comboBox->setEnabled(1);
+    insert = 1;
 }
 
 void employee::on_Perform_clicked()
 {
-    if(insert)
+    QString add = ui->Address->toPlainText();
+    QString name = ui->Name->toPlainText();
+    QString pho = ui->PhoneNum->toPlainText();
+    QString salary = ui->Salary->toPlainText();
+    QString DepNum = ui->DepartNum->currentText();
+    QString type = ui->comboBox->currentText();
+    if(insert == 0)
     {
-        QString add = ui->Address->toPlainText();
-        QString name = ui->Name->toPlainText();
-        QString pho = ui->PhoneNum->toPlainText();
-        QString salary = ui->Salary->toPlainText();
-        QString DepNum = ui->DepartNum->toPlainText();
-        QString type = ui->comboBox->currentText();
-        QString qur = "INSERT INTO Employee(Address,Name,Phone,Salary,Job_Type,Dep_number) VALUES('"+add+"','"+name+"','"+pho+"','"+salary+"','"+type+"','"+DepNum+"');";
-
+        QString qur = "INSERT INTO Employee(Address,Name,Phone,Salary,Job_Type,Dep_number) VALUES('"+add+"','"+name+"','"+pho+"','"+salary+"','"+type+"','"+DepNum+"')";
         l->exec(qur);
     }
-    else
+    else if(insert == 1)
     {
 
     }
+    else if(insert == 2)
+    {
+
+    }
+}
+
+void employee::on_DeleteRB_clicked()
+{
+    insert = 2;
+    ui->Address->setEnabled(0);
+    ui->Name->setEnabled(0);
+    ui->PhoneNum->setEnabled(0);
+    ui->Salary->setEnabled(0);
+    ui->DepartNum->setEnabled(0);
+    ui->comboBox->setEnabled(0);
+
+
 }

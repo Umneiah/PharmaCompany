@@ -31,44 +31,54 @@
       <x>10</x>
       <y>20</y>
       <width>181</width>
-      <height>80</height>
+      <height>101</height>
      </rect>
     </property>
     <property name="title">
      <string>Select</string>
     </property>
-    <widget class="QSplitter" name="splitter">
+    <widget class="QWidget" name="">
      <property name="geometry">
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>111</width>
-       <height>51</height>
+       <width>84</width>
+       <height>71</height>
       </rect>
      </property>
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <widget class="QRadioButton" name="radioButton">
-      <property name="text">
-       <string>Insert</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QRadioButton" name="UpdateRB">
-      <property name="text">
-       <string>Update</string>
-      </property>
-     </widget>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QRadioButton" name="radioButton">
+        <property name="text">
+         <string>Insert</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="UpdateRB">
+        <property name="text">
+         <string>Update</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="DeleteRB">
+        <property name="text">
+         <string>Delete</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </widget>
    <widget class="QPushButton" name="Perform">
     <property name="geometry">
      <rect>
-      <x>380</x>
-      <y>53</y>
+      <x>60</x>
+      <y>140</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -77,37 +87,24 @@
      <string>Go!</string>
     </property>
    </widget>
-   <widget class="QTextEdit" name="SSN">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>50</y>
-      <width>71</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>      SSN</string>
-    </property>
-   </widget>
    <widget class="QTextEdit" name="Name">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>110</y>
-      <width>71</width>
+      <x>210</x>
+      <y>70</y>
+      <width>101</width>
       <height>31</height>
      </rect>
     </property>
     <property name="placeholderText">
-     <string>     Name</string>
+     <string>          Name</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="PhoneNum">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>150</y>
+      <x>210</x>
+      <y>110</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -119,62 +116,59 @@
    <widget class="QTextEdit" name="Salary">
     <property name="geometry">
      <rect>
-      <x>160</x>
-      <y>110</y>
-      <width>71</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="placeholderText">
-     <string>     Salary</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="comboBox">
-    <property name="geometry">
-     <rect>
-      <x>450</x>
-      <y>120</y>
-      <width>69</width>
-      <height>22</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="DepartNum">
-    <property name="geometry">
-     <rect>
-      <x>220</x>
-      <y>150</y>
+      <x>320</x>
+      <y>70</y>
       <width>101</width>
       <height>31</height>
      </rect>
     </property>
     <property name="placeholderText">
-     <string>   Department No.</string>
+     <string>          Salary</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>110</y>
+      <width>69</width>
+      <height>22</height>
+     </rect>
     </property>
    </widget>
    <widget class="QTextEdit" name="Address">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>320</x>
       <y>110</y>
-      <width>131</width>
+      <width>101</width>
       <height>31</height>
      </rect>
     </property>
     <property name="placeholderText">
-     <string>              Address</string>
+     <string>         Address</string>
     </property>
    </widget>
-   <zorder>splitter</zorder>
-   <zorder>groupBox</zorder>
-   <zorder>Perform</zorder>
-   <zorder>SSN</zorder>
-   <zorder>Name</zorder>
-   <zorder>PhoneNum</zorder>
-   <zorder>Salary</zorder>
-   <zorder>comboBox</zorder>
-   <zorder>DepartNum</zorder>
-   <zorder>Address</zorder>
+   <widget class="QComboBox" name="DepartNum">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>70</y>
+      <width>69</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="SSN">
+    <property name="geometry">
+     <rect>
+      <x>290</x>
+      <y>30</y>
+      <width>69</width>
+      <height>22</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
  </widget>
  <resources/>

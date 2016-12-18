@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     mydatabase = new QSqlDatabase(QSqlDatabase::addDatabase("QMYSQL"));
     mydatabase->setHostName("localhost");
     mydatabase->setDatabaseName("PharmaCompany");
+    ui->pushButton->setEnabled(0);
     l = new QSqlQuery();
     choice = 0;
 }
@@ -84,6 +85,7 @@ void MainWindow::on_connect_clicked()
         ui->groupBox_2->setTitle("Connected to database");
         ui->groupBox->setEnabled(1);
         ui->groupBox_2->setEnabled(0);
+        ui->pushButton->setEnabled(1);
     }
     else
     {

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
+#include <mainwindow.h>
 
 namespace Ui {
 class employee;
@@ -20,6 +21,7 @@ public:
     QSqlQuery * l;
     int insert;
     bool fullT;
+    bool eng;
 
 private slots:
     void on_radioButton_clicked();
@@ -30,7 +32,16 @@ private slots:
 
     void on_DeleteRB_clicked();
 
+    void on_radioButton_pressed();
+
+    void on_EngRB_clicked();
+
+    void on_PhyRB_clicked();
+
+    void on_Back_clicked();
+
 private:
+    void UpdateComboBoxes();
     Ui::employee *ui;
 };
 

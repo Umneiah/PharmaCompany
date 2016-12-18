@@ -18,7 +18,7 @@ public:
     ~employee();
     QSqlDatabase * mydatabase;
     QSqlQuery * l;
-    bool insert;
+    int insert;
     bool fullT;
 
 private slots:
@@ -27,6 +27,8 @@ private slots:
     void on_UpdateRB_clicked();
 
     void on_Perform_clicked();
+
+    void on_DeleteRB_clicked();
 
 private:
     Ui::employee *ui;

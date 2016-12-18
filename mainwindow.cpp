@@ -81,10 +81,9 @@ void MainWindow::on_connect_clicked()
     mydatabase->setPassword(pass);
     if(mydatabase->open())
     {
-        QMessageBox messageBox;
-        messageBox.critical(0,"Done","Connected to database");
-        messageBox.setFixedSize(0,0);
+        ui->groupBox_2->setTitle("Connected to database");
         ui->groupBox->setEnabled(1);
+        ui->groupBox_2->setEnabled(0);
     }
     else
     {

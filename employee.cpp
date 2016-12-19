@@ -63,14 +63,22 @@ void employee::on_Perform_clicked()
     QString DepName = ui->DepartNum->currentText();
     QString extra = ui->JobType->toPlainText();
     QString SSSn = ui->SSN->currentText();
-    QString query3 = "select Department_number from Department WHERE Name='"+DepName+"';";
-    l->exec(query3);
-    l->next();
-    QString DepNum = l->value(0).toString();
+    QString DepNum;
+    if(DepName != "NULL")
+    {
+        QString query3 = "select Department_number from Department WHERE Name='"+DepName+"';";
+        l->exec(query3);
+        l->next();
+        DepNum = l->value(0).toString();
+    }
+    else
+    {
+        DepNum = "NULL";
+    }
     QString type = ui->comboBox->currentText();
     if(insert == 0)
     {
-        if(add.size() == 0 || name.size() == 0 || pho.size() == 0 || salary.size() == 0 || DepName.size()==0 || extra.size() == 0 || DepNum.size() == 0 )
+        if(add.size() == 0 || name.size() == 0 || pho.size() == 0 || salary.size() == 0 || DepName.size()==0 || extra.size() == 0)
         {
             QMessageBox messageBox;
             messageBox.critical(0,"Error","Please fill all information fields!");
@@ -78,7 +86,7 @@ void employee::on_Perform_clicked()
         }
         else
         {
-            QString qur = "INSERT INTO Employee(Address,Name,Phone,Salary,Job_Type,Dep_number) VALUES('"+add+"','"+name+"','"+pho+"','"+salary+"','"+type+"','"+DepNum+"')";
+            QString qur = "INSERT INTO Employee(Address,Name,Phone,Salary,Job_Type,Dep_number) VALUES('"+add+"','"+name+"','"+pho+"','"+salary+"','"+type+"',"+DepNum+")";
             l->exec(qur);
             l->exec("select SSN from employee WHERE Address='"+add+"' AND Name='"+name+"' AND Phone='"+pho+"' AND Salary='"+salary+"' AND Job_Type='"+type+"' AND Dep_number ='"+DepNum+"';");
             l->next();
@@ -196,6 +204,7 @@ void employee::UpdateComboBoxes()
     }
     QString query = "select Name from Department;";
     l->exec(query);
+    ui->DepartNum->addItem("NULL");
     while(l->next())
     {
         QString item = l->value(0).toString();

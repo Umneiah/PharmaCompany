@@ -233,14 +233,15 @@ void product::on_textEdit_textChanged()
         }
     }
     QStandardItemModel *model = new QStandardItemModel(0,0,this);
+    model->setColumnCount(4);
+    model->setRowCount(size);
+    model->setHorizontalHeaderItem(0, new QStandardItem(QString("ID")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Name")));
+    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Price")));
+    model->setHorizontalHeaderItem(3, new QStandardItem(QString("Category/Expiration_Date")));
     if(size)
     {
-        model->setColumnCount(4);
-        model->setRowCount(size);
-        model->setHorizontalHeaderItem(0, new QStandardItem(QString("ID")));
-        model->setHorizontalHeaderItem(1, new QStandardItem(QString("Name")));
-        model->setHorizontalHeaderItem(2, new QStandardItem(QString("Price")));
-        model->setHorizontalHeaderItem(3, new QStandardItem(QString("Category/Expiration_Date")));
+
         for(int index = 0 ;index <output.size();index = index + 4)
         {
             QStandardItem *id= new QStandardItem(output[index]);

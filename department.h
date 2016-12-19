@@ -23,8 +23,6 @@ public:
     QSqlQuery * l;
 
     int option;
-    int option2;
-    QString query2;
 
 private slots:
 
@@ -41,14 +39,12 @@ private slots:
 
     void on_Return_clicked();
 
-    void on_SName_clicked();
-
-    void on_SNumber_clicked();
-
-    void on_SMgrssn_clicked();
-
 private:
     Ui::department *ui;
+};
+
+#endif // DEPARTMENT_H
+
 };
 
 #endif // DEPARTMENT_H

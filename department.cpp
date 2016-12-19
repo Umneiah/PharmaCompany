@@ -125,6 +125,7 @@ void department::on_Search_textChanged()
 
     if(ui->SName->isChecked())
     {
+
         QString query = "SELECT Name,Mgr_SSN,Department_number FROM Department WHERE Name = '"+ui->Search->toPlainText()+"'";
         l->exec(query);
         model->setRowCount(l->size());
@@ -188,4 +189,33 @@ void department::on_Return_clicked()
     MainWindow * w = new MainWindow();
     this->close();
     w->show();
+}
+
+void department::on_pushButton_clicked()
+{
+    QString query = "select d.Department_number ,d.Name , e.Name ,e.SSN from Department as d , Employee as e where e.SSN = d.Mgr_SSN ";
+    QStandardItemModel *model = new QStandardItemModel(0,0,this);
+    model->setColumnCount(4);
+    model->setHorizontalHeaderItem(0, new QStandardItem(QString("Department_number")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Name")));
+    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Manger Name")));
+    model->setHorizontalHeaderItem(3, new QStandardItem(QString("Manger SSN")));
+
+    l->exec(query);
+    int index = 0;
+    model->setRowCount(l->size());
+    while(l->next())
+    {
+        QStandardItem *i= new QStandardItem(l->value(0).toString());
+        QStandardItem *n = new QStandardItem(l->value(1).toString());
+        QStandardItem *p = new QStandardItem(l->value(2).toString());
+        QStandardItem *k = new QStandardItem(l->value(3).toString());
+        model->setItem(index,0,i);
+        model->setItem(index,1,n);
+        model->setItem(index,2,p);
+        model->setItem(index,3,k);
+        index++;
+    }
+
+    ui->SearchTable->setModel(model);
 }

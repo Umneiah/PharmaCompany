@@ -38,6 +38,8 @@ private slots:
 
     void on_Return_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::department *ui;
 };

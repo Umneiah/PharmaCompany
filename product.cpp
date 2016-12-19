@@ -275,3 +275,46 @@ void product::on_pushButton_clicked()
     w->show();
     this->close();
 }
+
+void product::on_pushButton_2_clicked()
+{
+    QString query = "select p.ID,p.Name,p.Price ,m.Expiration_Date from product as p ,Medicine as m where p.ID = m.M_ID";
+    QString query1 = "select p.ID,p.Name,p.Price ,e.Category from product as p ,Equipment as e where p.ID = e.EID";
+    QStandardItemModel *model = new QStandardItemModel(0,0,this);
+    model->setColumnCount(4);
+    model->setHorizontalHeaderItem(0, new QStandardItem(QString("ID")));
+    model->setHorizontalHeaderItem(1, new QStandardItem(QString("Name")));
+    model->setHorizontalHeaderItem(2, new QStandardItem(QString("Price")));
+    model->setHorizontalHeaderItem(3, new QStandardItem(QString("Category/Expiration_Date")));
+    l->exec(query);
+    int index = 0;
+    QSqlQuery *l2 = new QSqlQuery();
+    l2->exec(query1);
+    model->setRowCount(l->size()+l2->size());
+    while(l->next())
+    {
+        QStandardItem *id= new QStandardItem(l->value(0).toString());
+        QStandardItem *name = new QStandardItem(l->value(1).toString());
+        QStandardItem *price = new QStandardItem(l->value(2).toString());
+        QStandardItem *e = new QStandardItem(l->value(3).toString());
+        model->setItem(index,0,id);
+        model->setItem(index,1,name);
+        model->setItem(index,2,price);
+        model->setItem(index,3,e);
+        index++;
+    }
+    while(l2->next())
+    {
+        QStandardItem *id= new QStandardItem(l2->value(0).toString());
+        QStandardItem *name = new QStandardItem(l2->value(1).toString());
+        QStandardItem *price = new QStandardItem(l2->value(2).toString());
+        QStandardItem *e = new QStandardItem(l2->value(3).toString());
+        model->setItem(index,0,id);
+        model->setItem(index,1,name);
+        model->setItem(index,2,price);
+        model->setItem(index,3,e);
+        index++;
+    }
+    ui->tableView->setModel(model);
+
+}

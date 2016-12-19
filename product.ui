@@ -163,7 +163,7 @@
    <widget class="QComboBox" name="Ids">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>30</x>
       <y>120</y>
       <width>69</width>
       <height>31</height>

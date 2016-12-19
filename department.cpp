@@ -71,6 +71,7 @@ void department::on_GoButton_clicked()
            {
                QString qur = "INSERT INTO Department(Name,Mgr_SSN) VALUES('"+name+"','"+mgr_ssn+"')";
                l->exec(qur);
+               ui->DepName->clear();
            }
            else
            {
@@ -94,6 +95,7 @@ void department::on_GoButton_clicked()
             qur+=  "WHERE Department_number = '"+dep_num+"'";
 
             l->exec(qur);
+            ui->DepName->clear();
        }
        else if(option == 2)
        {

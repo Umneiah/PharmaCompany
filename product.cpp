@@ -10,6 +10,7 @@ product::product(QWidget *parent) :
     Equipment = true;
     insert = true;
     ui->name->setChecked(true);
+    ui->Ids->setEnabled(0);
 }
 
 product::~product()
@@ -43,10 +44,12 @@ void product::on_radioButton_clicked()
     insert = true;
     dele = false;
     ui->Ids->clear();
+    ui->Ids->setEnabled(0);
 }
 
 void product::on_UpdateRB_clicked()
 {
+    ui->Ids->setEnabled(1);
     ui->Ids->clear();
     insert = false;
     dele = false;
@@ -134,6 +137,7 @@ void product::on_Perform_clicked()
 
 void product::on_radioButton_4_clicked()
 {
+    ui->Ids->setEnabled(1);
     ui->Ids->clear();
     ui->category->setEnabled(false);
     ui->Name->setEnabled(false);
@@ -151,7 +155,7 @@ void product::on_radioButton_4_clicked()
 
 void product::on_textEdit_textChanged()
 {
-    int c1=0,c2=0;
+    //int c1=0,c2=0;
     QStringList output;
     QStringList output1 ;
     int size = 0;

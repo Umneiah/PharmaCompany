@@ -8,7 +8,6 @@ department::department(QWidget *parent) :
     ui->setupUi(this);
     ui->DepartNum->setEnabled(0);
     option = 0;
-    option2 = 0;
 
     mydatabase = new QSqlDatabase();
     l = new QSqlQuery() ;
@@ -102,6 +101,118 @@ void department::on_GoButton_clicked()
            QString qur = "DELETE FROM Department WHERE Department_number = '"+dep_num+"' ";
            l->exec(qur);
        }
+
+       ui->DepartNum->clear();
+
+       QString Q = "SELECT Department_number FROM Department ORDER BY Department_number ASC;";
+
+       l->exec(Q);
+       while (l->next())
+       {
+#include "department.h"
+#include "ui_department.h"
+
+department::department(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::department)
+{
+    ui->setupUi(this);
+    ui->DepartNum->setEnabled(0);
+    option = 0;
+
+    mydatabase = new QSqlDatabase();
+    l = new QSqlQuery() ;
+
+    QString Q = "SELECT Department_number FROM Department ORDER BY Department_number ASC;";
+
+    l->exec(Q);
+    while (l->next())
+    {
+        int index = l->value(0).toInt();
+        ui->DepartNum->addItem(QString::number(index));
+    }
+
+    QString Ql = "SELECT SSN FROM Employee ORDER BY SSN ASC;";
+    l->exec(Ql);
+    while (l->next())
+    {
+        int index = l->value(0).toInt();
+        ui->Mgr_SSN->addItem(QString::number(index));
+    }
+
+}
+
+department::~department()
+{
+    delete ui;
+}
+
+void department::on_InsertDep_clicked()
+{
+    option = 0;
+    ui->Mgr_SSN->setEnabled(1);
+    ui->DepName->setEnabled(1);
+    ui->DepartNum->setEnabled(0);
+}
+
+void department::on_UpdateDep_clicked()
+{
+    option = 1;
+    ui->Mgr_SSN->setEnabled(1);
+    ui->DepName->setEnabled(1);
+    ui->DepartNum->setEnabled(1);
+}
+
+void department::on_DeleteDep_clicked()
+{
+    option = 2;
+    ui->Mgr_SSN->setEnabled(0);
+    ui->DepName->setEnabled(0);
+    ui->DepartNum->setEnabled(1);
+}
+
+void department::on_GoButton_clicked()
+{
+       QString name = ui->DepName->toPlainText();
+       QString mgr_ssn = ui->Mgr_SSN->currentText();
+
+       if(option == 0)
+       {
+           if(name != "")
+           {
+               QString qur = "INSERT INTO Department(Name,Mgr_SSN) VALUES('"+name+"','"+mgr_ssn+"')";
+               l->exec(qur);
+           }
+           else
+           {
+               QMessageBox messageBox;
+               messageBox.critical(0,"Error","You Must Fill in all of The Fields");
+           }
+
+       }
+       else if(option == 1)
+       {
+            QString dep_num = ui->DepartNum->currentText();
+            QString qur = "UPDATE Department SET ";
+            if(name.size() != 0)
+             {
+                 qur+= "Name = '"+name+"' , ";
+             }
+            if(mgr_ssn.size() != 0)
+             {
+                 qur+= "Mgr_SSN = '"+mgr_ssn+"'";
+             }
+            qur+=  "WHERE Department_number = '"+dep_num+"'";
+
+            l->exec(qur);
+       }
+       else if(option == 2)
+       {
+           QString dep_num = ui->DepartNum->currentText();
+           QString qur = "DELETE FROM Department WHERE Department_number = '"+dep_num+"' ";
+           l->exec(qur);
+       }
+
        ui->DepartNum->clear();
 
        QString Q = "SELECT Department_number FROM Department ORDER BY Department_number ASC;";
@@ -116,15 +227,18 @@ void department::on_GoButton_clicked()
 
 void department::on_Search_textChanged()
 {
-    l->exec(query2);
-    QStandardItemModel *model = new QStandardItemModel(l->size(),3,this);;
-
+    QStandardItemModel *model = new QStandardItemModel(ui->DepartNum->count(),3,this);
     model->setHorizontalHeaderItem(0, new QStandardItem(QString("Name")));
     model->setHorizontalHeaderItem(1, new QStandardItem(QString("Mgr_SSN")));
     model->setHorizontalHeaderItem(2, new QStandardItem(QString("Dep_Number")));
 
-    if(option2 = 0)
+
+    if(ui->SName->isChecked())
     {
+        QString query = "SELECT Name,Mgr_SSN,Department_number FROM Department WHERE Name = '"+ui->Search->toPlainText()+"'";
+        l->exec(query);
+        model->setRowCount(l->size());
+
         int index=0;
         while(l->next())
         {
@@ -138,8 +252,11 @@ void department::on_Search_textChanged()
         }
     }
 
-    else if(option2 = 1)
+    else if(ui->SNumber->isChecked())
     {
+        QString query = "SELECT Name,Mgr_SSN,Department_number FROM Department WHERE Department_number = '"+ui->Search->toPlainText()+"'";
+        l->exec(query);
+        model->setRowCount(l->size());
         int index=0;
         while(l->next())
         {
@@ -153,8 +270,12 @@ void department::on_Search_textChanged()
         }
     }
 
-    else if(option2 = 2)
+    else if(ui->SMgrssn->isChecked())
     {
+        QString query = "SELECT Name,Mgr_SSN,Department_number FROM Department WHERE Mgr_SSN = '"+ui->Search->toPlainText()+"'";
+        l->exec(query);
+        model->setRowCount(l->size()); 
+
         int index =0;
         while(l->next())
         {
@@ -178,21 +299,9 @@ void department::on_Return_clicked()
     this->close();
     w->show();
 }
-
-void department::on_SName_clicked()
-{
-    option2 = 0;
-    query2 = "SELECT Name,Mgr_SSN,Department_number FROM Department WHERE Name = '"+ui->Search->toPlainText()+"'";
+    this->close();
+    w->show();
 }
 
-void department::on_SNumber_clicked()
-{
-    option2 = 1;
-    query2 = "SELECT Name,Mgr_SSN,Department_number FROM Department WHERE Department_number = '"+ui->Search->toPlainText()+"'";
-}
 
-void department::on_SMgrssn_clicked()
-{
-    option2 = 2;
-    query2 = "SELECT Name,Mgr_SSN,Department_number FROM Department WHERE Mgr_SSN = '"+ui->Search->toPlainText()+"'";
-}
+

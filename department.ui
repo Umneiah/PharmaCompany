@@ -132,7 +132,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Return</string>
+     <string>Back</string>
     </property>
    </widget>
    <widget class="QLabel" name="LSSN">

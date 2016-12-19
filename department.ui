@@ -73,8 +73,6 @@
       </item>
      </layout>
     </widget>
-    <zorder>layoutWidget</zorder>
-    <zorder>SearchTable</zorder>
    </widget>
    <widget class="QPushButton" name="GoButton">
     <property name="geometry">
@@ -202,6 +200,9 @@
        <property name="text">
         <string>DName</string>
        </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -230,6 +231,10 @@
      </rect>
     </property>
    </widget>
+   <zorder>Search</zorder>
+   <zorder>horizontalLayoutWidget</zorder>
+   <zorder>SearchTable</zorder>
+   <zorder>SNumber</zorder>
   </widget>
  </widget>
  <resources/>

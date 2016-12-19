@@ -118,6 +118,10 @@ void client::on_go_clicked()
                 query = "INSERT INTO Hospital(HID, Owner) VALUES('"+get_id()+"','"+type_colomn+"')";
                 l->exec(query);
             }
+            ui->client_name->clear();
+            ui->client_phone->clear();
+            ui->client_address->clear();
+            ui->selectTypeText->clear();
         }
         else
         {
@@ -169,6 +173,10 @@ void client::on_go_clicked()
                 l->exec(query);
             }
         }
+        ui->client_name->clear();
+        ui->client_phone->clear();
+        ui->client_address->clear();
+        ui->selectTypeText->clear();
     }
     else if(action == 2)
     {
@@ -460,5 +468,51 @@ void client::on_searchText_textChanged()
                     }
                 }
             }
+    ui->search_output->setModel(model);
+}
+
+void client::on_ShowAll_clicked()
+{
+    int rows = 0 ;
+    QString query = "SELECT * FROM Client" ;
+    QVector<int> ids ;
+    l->exec(query);
+    while(l->next())
+    {
+        model->setHorizontalHeaderItem(0, new QStandardItem(QString("ID")));
+        model->setHorizontalHeaderItem(1, new QStandardItem(QString("Name")));
+        model->setHorizontalHeaderItem(2, new QStandardItem(QString("Phone")));
+        model->setHorizontalHeaderItem(3, new QStandardItem(QString("Address")));
+        model->setItem( rows , 0 , new QStandardItem(QString(l->value(0).toString())) );
+        model->setItem( rows , 1 , new QStandardItem(QString(l->value(2).toString())) );
+        model->setItem( rows , 2 , new QStandardItem(QString(l->value(3).toString())) );
+        model->setItem( rows , 3 , new QStandardItem(QString(l->value(1).toString())) );
+        ids.push_back(l->value(0).toInt());
+        rows++;
+    }
+    for(int i = 0 ; i<ids.size() ; i++)
+    {
+        query = "SELECT * FROM Clinic WHERE C_ID='"+QString::number(ids[i])+"'" ;
+        l->exec(query);
+        while(l->next())
+        {
+            model->setHorizontalHeaderItem(4, new QStandardItem(QString("Type")));
+            model->setItem( i ,4 , new QStandardItem(QString("DoctorName: " + l->value(1).toString())) );
+        }
+        query = "SELECT * FROM Pharmacy WHERE PID='"+QString::number(ids[i])+"'" ;
+        l->exec(query);
+        while(l->next())
+        {
+            model->setHorizontalHeaderItem(4, new QStandardItem(QString("Type")));
+            model->setItem( i ,4 , new QStandardItem(QString("BranchNumber: " + l->value(1).toString())) );
+        }
+        query = "SELECT * FROM Hospital WHERE HID='"+QString::number(ids[i])+"'" ;
+        l->exec(query);
+        while(l->next())
+        {
+            model->setHorizontalHeaderItem(4, new QStandardItem(QString("Type")));
+            model->setItem( i ,4 , new QStandardItem(QString("HospitalOwner: " + l->value(1).toString())) );
+        }
+    }
     ui->search_output->setModel(model);
 }

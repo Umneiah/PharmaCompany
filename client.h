@@ -43,6 +43,8 @@ private slots:
 
     void on_searchText_textChanged();
 
+    void on_ShowAll_clicked();
+
 private:
     Ui::client *ui;
 };

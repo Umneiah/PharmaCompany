@@ -263,21 +263,6 @@
      <string> Engineering Type</string>
     </property>
    </widget>
-   <zorder>groupBox</zorder>
-   <zorder>Perform</zorder>
-   <zorder>Name</zorder>
-   <zorder>PhoneNum</zorder>
-   <zorder>Salary</zorder>
-   <zorder>comboBox</zorder>
-   <zorder>Address</zorder>
-   <zorder>DepartNum</zorder>
-   <zorder>SSN</zorder>
-   <zorder>label</zorder>
-   <zorder>label_2</zorder>
-   <zorder>label_3</zorder>
-   <zorder>groupBox_3</zorder>
-   <zorder>JobType</zorder>
-   <zorder>groupBox_4</zorder>
   </widget>
   <widget class="QGroupBox" name="groupBox_4">
    <property name="geometry">
@@ -419,6 +404,19 @@
       <width>521</width>
       <height>111</height>
      </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="ShowAll">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>20</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Show All</string>
     </property>
    </widget>
   </widget>

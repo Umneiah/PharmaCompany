@@ -56,6 +56,8 @@ private slots:
 
     void on_radioButton_7_clicked();
 
+    void on_ShowAll_clicked();
+
 private:
     void UpdateComboBoxes();
     Ui::employee *ui;

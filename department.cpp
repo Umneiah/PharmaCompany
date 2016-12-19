@@ -126,6 +126,7 @@ void department::on_Search_textChanged()
     {
         QString query = "SELECT Name,Mgr_SSN,Department_number FROM Department WHERE Name = '"+ui->Search->toPlainText()+"'";
         l->exec(query);
+        model->setRowCount(l->size());
 
         int index=0;
         while(l->next())
@@ -144,7 +145,7 @@ void department::on_Search_textChanged()
     {
         QString query = "SELECT Name,Mgr_SSN,Department_number FROM Department WHERE Department_number = '"+ui->Search->toPlainText()+"'";
         l->exec(query);
-
+        model->setRowCount(l->size());
         int index=0;
         while(l->next())
         {
@@ -162,6 +163,7 @@ void department::on_Search_textChanged()
     {
         QString query = "SELECT Name,Mgr_SSN,Department_number FROM Department WHERE Mgr_SSN = '"+ui->Search->toPlainText()+"'";
         l->exec(query);
+        model->setRowCount(l->size());
 
         int index =0;
         while(l->next())
@@ -186,6 +188,3 @@ void department::on_Return_clicked()
     this->close();
     w->show();
 }
-
-
-

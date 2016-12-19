@@ -21,7 +21,6 @@ public:
     ~department();
     QSqlDatabase * mydatabase;
     QSqlQuery * l;
-
     int option;
 
 private slots:

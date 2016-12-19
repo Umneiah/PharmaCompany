@@ -121,7 +121,6 @@ void department::on_Search_textChanged()
     model->setHorizontalHeaderItem(1, new QStandardItem(QString("Mgr_SSN")));
     model->setHorizontalHeaderItem(2, new QStandardItem(QString("Dep_Number")));
 
-
     if(ui->SName->isChecked())
     {
         QString query = "SELECT Name,Mgr_SSN,Department_number FROM Department WHERE Name = '"+ui->Search->toPlainText()+"'";

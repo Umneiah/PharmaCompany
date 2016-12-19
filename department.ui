@@ -231,6 +231,10 @@
      </rect>
     </property>
    </widget>
+   <zorder>Search</zorder>
+   <zorder>horizontalLayoutWidget</zorder>
+   <zorder>SearchTable</zorder>
+   <zorder>SNumber</zorder>
   </widget>
  </widget>
  <resources/>

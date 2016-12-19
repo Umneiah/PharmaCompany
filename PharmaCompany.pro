@@ -18,19 +18,25 @@ SOURCES += main.cpp\
     employee.cpp \
     client.cpp \
     product.cpp \
-    department.cpp
+    department.cpp \
+    buys.cpp \
+    manufacture.cpp
 
 HEADERS  += mainwindow.h \
     employee.h \
     client.h \
     product.h \
-    department.h
+    department.h \
+    buys.h \
+    manufacture.h
 
 FORMS    += mainwindow.ui \
     employee.ui \
     client.ui \
     product.ui \
-    department.ui
+    department.ui \
+    buys.ui \
+    manufacture.ui
 
 INCLUDEPATH += $$PWD/../../../Users/mosta/Desktop
 DEPENDPATH += $$PWD/../../../Users/mosta/Desktop

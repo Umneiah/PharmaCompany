@@ -232,9 +232,11 @@ void product::on_textEdit_textChanged()
             size++;
         }
     }
+    QStandardItemModel *model = new QStandardItemModel(0,0,this);
     if(size)
     {
-        QStandardItemModel *model = new QStandardItemModel(size,4,this);
+        model->setColumnCount(4);
+        model->setRowCount(size);
         model->setHorizontalHeaderItem(0, new QStandardItem(QString("ID")));
         model->setHorizontalHeaderItem(1, new QStandardItem(QString("Name")));
         model->setHorizontalHeaderItem(2, new QStandardItem(QString("Price")));
@@ -261,9 +263,9 @@ void product::on_textEdit_textChanged()
             model->setItem(index,2,price);
             model->setItem(index,3,e);
         }
-        ui->tableView->setModel(model);
-    }
 
+    }
+ui->tableView->setModel(model);
 }
 
 void product::on_pushButton_clicked()

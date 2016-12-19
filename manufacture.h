@@ -5,7 +5,7 @@
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
 #include<QStandardItemModel>
-
+#include <mainwindow.h>
 namespace Ui {
 class Manufacture;
 }
@@ -19,6 +19,14 @@ public:
     ~Manufacture();
     QSqlDatabase * mydatabase;
     QSqlQuery *l;
+
+private slots:
+    void on_insert_clicked();
+
+    void on_Back_clicked();
+
+
+    void on_search_textChanged();
 
 private:
     Ui::Manufacture *ui;

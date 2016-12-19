@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>538</width>
+    <width>654</width>
     <height>363</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>521</width>
+     <width>641</width>
      <height>181</height>
     </rect>
    </property>
@@ -37,7 +37,7 @@
     <property name="title">
      <string>Select</string>
     </property>
-    <widget class="QWidget" name="">
+    <widget class="QWidget" name="layoutWidget">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -77,7 +77,7 @@
    <widget class="QPushButton" name="Perform">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>120</x>
       <y>140</y>
       <width>75</width>
       <height>23</height>
@@ -90,8 +90,8 @@
    <widget class="QTextEdit" name="Name">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>70</y>
+      <x>320</x>
+      <y>90</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -103,8 +103,8 @@
    <widget class="QTextEdit" name="PhoneNum">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>110</y>
+      <x>320</x>
+      <y>130</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -116,8 +116,8 @@
    <widget class="QTextEdit" name="Salary">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>70</y>
+      <x>430</x>
+      <y>90</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -129,8 +129,8 @@
    <widget class="QComboBox" name="comboBox">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>110</y>
+      <x>550</x>
+      <y>140</y>
       <width>69</width>
       <height>22</height>
      </rect>
@@ -139,8 +139,8 @@
    <widget class="QTextEdit" name="Address">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>110</y>
+      <x>430</x>
+      <y>130</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -152,8 +152,8 @@
    <widget class="QComboBox" name="DepartNum">
     <property name="geometry">
      <rect>
-      <x>430</x>
-      <y>70</y>
+      <x>550</x>
+      <y>90</y>
       <width>69</width>
       <height>22</height>
      </rect>
@@ -162,10 +162,262 @@
    <widget class="QComboBox" name="SSN">
     <property name="geometry">
      <rect>
-      <x>290</x>
-      <y>30</y>
+      <x>550</x>
+      <y>40</y>
       <width>69</width>
       <height>22</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>20</y>
+      <width>21</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SSN</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>555</x>
+      <y>70</y>
+      <width>61</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Department</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>120</y>
+      <width>31</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Type</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>50</y>
+      <width>101</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Empolyee</string>
+    </property>
+    <widget class="QRadioButton" name="EngRB">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Engineer</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="PhyRB">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>45</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Physician</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QTextEdit" name="JobType">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>50</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string> Engineering Type</string>
+    </property>
+   </widget>
+   <zorder>groupBox</zorder>
+   <zorder>Perform</zorder>
+   <zorder>Name</zorder>
+   <zorder>PhoneNum</zorder>
+   <zorder>Salary</zorder>
+   <zorder>comboBox</zorder>
+   <zorder>Address</zorder>
+   <zorder>DepartNum</zorder>
+   <zorder>SSN</zorder>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>groupBox_3</zorder>
+   <zorder>JobType</zorder>
+   <zorder>groupBox_4</zorder>
+  </widget>
+  <widget class="QGroupBox" name="groupBox_4">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>190</y>
+     <width>641</width>
+     <height>171</height>
+    </rect>
+   </property>
+   <property name="title">
+    <string>Search</string>
+   </property>
+   <widget class="QTextEdit" name="Search">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>13</y>
+      <width>101</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="placeholderText">
+     <string>          Search</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Back">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>20</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Back</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_5">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>101</width>
+      <height>141</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Search By</string>
+    </property>
+    <widget class="QRadioButton" name="radioButton_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>41</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>SSN</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>51</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Name</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>60</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Phone</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_5">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Salary</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_6">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Job type</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_7">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>120</y>
+       <width>81</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Dep name</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QTableView" name="tableView">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>50</y>
+      <width>521</width>
+      <height>111</height>
      </rect>
     </property>
    </widget>

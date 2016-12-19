@@ -4,7 +4,8 @@
 #include <QWidget>
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
-
+#include <QStandardItemModel>
+#include <mainwindow.h>
 namespace Ui {
 class product;
 }
@@ -18,6 +19,26 @@ public:
     ~product();
     QSqlDatabase * mydatabase;
     QSqlQuery * l;
+    bool Equipment ;
+    bool insert;
+    bool dele;
+
+private slots:
+    void on_radioButton_2_clicked();
+
+    void on_radioButton_3_clicked();
+
+    void on_radioButton_clicked();
+
+    void on_UpdateRB_clicked();
+
+    void on_Perform_clicked();
+
+    void on_radioButton_4_clicked();
+
+    void on_textEdit_textChanged();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::product *ui;

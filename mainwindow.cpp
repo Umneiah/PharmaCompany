@@ -71,6 +71,20 @@ void MainWindow::on_pushButton_clicked()
         p->l = this->l;
         p->show();
     }
+    else if(choice == 4)
+    {
+        Buys *B = new Buys();
+        B->mydatabase = this->mydatabase;
+        B->l = this->l;
+        B->show();
+    }
+    else if(choice == 5)
+    {
+        Manufacture *M = new Manufacture();
+        M->mydatabase = this->mydatabase;
+        M->l = this->l;
+        M->show();
+    }
     this->close();
 }
 
@@ -93,4 +107,14 @@ void MainWindow::on_connect_clicked()
         messageBox.critical(0,"Error","couldn't connect to database");
         messageBox.setFixedSize(0,0);
     }
+}
+
+void MainWindow::on_radioButton_clicked()
+{
+    choice = 4;
+}
+
+void MainWindow::on_ManufactureRB_clicked()
+{
+    choice = 5;
 }

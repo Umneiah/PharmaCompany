@@ -8,6 +8,8 @@
 #include <client.h>
 #include <employee.h>
 #include <product.h>
+#include <buys.h>
+#include <manufacture.h>
 #include <QMessageBox>
 
 namespace Ui {
@@ -37,6 +39,10 @@ private slots:
     void on_pushButton_clicked();
 
     void on_connect_clicked();
+
+    void on_radioButton_clicked();
+
+    void on_ManufactureRB_clicked();
 
 private:
     Ui::MainWindow *ui;

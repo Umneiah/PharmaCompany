@@ -76,7 +76,6 @@ void department::on_GoButton_clicked()
            {
                QMessageBox messageBox;
                messageBox.critical(0,"Error","You Must Fill in all of The Fields");
-               //messageBox.setFixedSize(0,0);
            }
 
        }
@@ -152,7 +151,7 @@ void department::on_Search_textChanged()
             QStandardItem *name = new QStandardItem(QString(l->value("Name").toString()));
             QStandardItem *mgrssn = new QStandardItem(QString(l->value("Mgr_SSN").toString()));
             QStandardItem *depnumber = new QStandardItem(QString(l->value("Department_number").toString()));
-            model->setItem(index,0,name); //row,column,item
+            model->setItem(index,0,name);
             model->setItem(index,1,mgrssn);
             model->setItem(index,2,depnumber);
              index++;
@@ -170,7 +169,7 @@ void department::on_Search_textChanged()
              QStandardItem *name = new QStandardItem(QString(l->value("Name").toString()));
              QStandardItem *mgrssn = new QStandardItem(QString(l->value("Mgr_SSN").toString()));
              QStandardItem *depnumber = new QStandardItem(QString(l->value("Department_number").toString()));
-             model->setItem(index,0,name); //row,column,item
+             model->setItem(index,0,name);
              model->setItem(index,1,mgrssn);
              model->setItem(index,2,depnumber);
              index++;

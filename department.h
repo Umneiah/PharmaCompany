@@ -35,10 +35,7 @@ private slots:
 
     void on_GoButton_clicked();
 
-
     void on_Search_textChanged();
-
-
 
     void on_Return_clicked();
 

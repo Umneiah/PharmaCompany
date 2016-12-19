@@ -92,7 +92,7 @@
      </rect>
     </property>
     <property name="placeholderText">
-     <string>     Name</string>
+     <string>                 Name</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="Price">
@@ -105,7 +105,7 @@
      </rect>
     </property>
     <property name="placeholderText">
-     <string>Price</string>
+     <string>                  Price</string>
     </property>
    </widget>
    <widget class="QTextEdit" name="category">
@@ -118,7 +118,7 @@
      </rect>
     </property>
     <property name="placeholderText">
-     <string>Category</string>
+     <string>                     Category</string>
     </property>
    </widget>
    <widget class="QGroupBox" name="groupBox_3">
@@ -156,7 +156,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>medcine</string>
+      <string>Medicine</string>
      </property>
     </widget>
    </widget>
@@ -214,7 +214,7 @@
      <rect>
       <x>230</x>
       <y>30</y>
-      <width>143</width>
+      <width>144</width>
       <height>19</height>
      </rect>
     </property>
@@ -232,7 +232,7 @@
      <item>
       <widget class="QRadioButton" name="id">
        <property name="text">
-        <string>Id</string>
+        <string>ID</string>
        </property>
        <attribute name="buttonGroup">
         <string notr="true">buttonGroup</string>
@@ -242,7 +242,7 @@
      <item>
       <widget class="QRadioButton" name="pr">
        <property name="text">
-        <string>price</string>
+        <string>Price</string>
        </property>
        <attribute name="buttonGroup">
         <string notr="true">buttonGroup</string>

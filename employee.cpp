@@ -68,28 +68,37 @@ void employee::on_Perform_clicked()
     l->next();
     QString DepNum = l->value(0).toString();
     QString type = ui->comboBox->currentText();
-    ui->Address->clear();
-    ui->Name->clear();
-    ui->PhoneNum->clear();
-    ui->Salary->clear();
-    ui->JobType->clear();
     if(insert == 0)
     {
-        QString qur = "INSERT INTO Employee(Address,Name,Phone,Salary,Job_Type,Dep_number) VALUES('"+add+"','"+name+"','"+pho+"','"+salary+"','"+type+"','"+DepNum+"')";
-        l->exec(qur);
-        l->exec("select SSN from employee WHERE Address='"+add+"' AND Name='"+name+"' AND Phone='"+pho+"' AND Salary='"+salary+"' AND Job_Type='"+type+"' AND Dep_number ='"+DepNum+"';");
-        l->next();
-        QString ssn = l->value(0).toString();
-        QString qur4;
-        if(eng)
+        if(add.size() == 0 || name.size() == 0 || pho.size() == 0 || salary.size() == 0 || DepName.size()==0 || extra.size() == 0 || DepNum.size() == 0 )
         {
-            qur4 = "INSERT INTO Engineer(ESSN,Eng_Type) VALUES('"+ssn+"','"+extra+"')";
+            QMessageBox messageBox;
+            messageBox.critical(0,"Error","Please fill all information fields!");
+            messageBox.setFixedSize(0,0);
         }
         else
         {
-            qur4 = "INSERT INTO Physician(PSSN,Specialized_in) VALUES('"+ssn+"','"+extra+"')";
+            QString qur = "INSERT INTO Employee(Address,Name,Phone,Salary,Job_Type,Dep_number) VALUES('"+add+"','"+name+"','"+pho+"','"+salary+"','"+type+"','"+DepNum+"')";
+            l->exec(qur);
+            l->exec("select SSN from employee WHERE Address='"+add+"' AND Name='"+name+"' AND Phone='"+pho+"' AND Salary='"+salary+"' AND Job_Type='"+type+"' AND Dep_number ='"+DepNum+"';");
+            l->next();
+            QString ssn = l->value(0).toString();
+            QString qur4;
+            if(eng)
+            {
+                qur4 = "INSERT INTO Engineer(ESSN,Eng_Type) VALUES('"+ssn+"','"+extra+"')";
+            }
+            else
+            {
+                qur4 = "INSERT INTO Physician(PSSN,Specialized_in) VALUES('"+ssn+"','"+extra+"')";
+            }
+            l->exec(qur4);
+            ui->Address->clear();
+            ui->Name->clear();
+            ui->PhoneNum->clear();
+            ui->Salary->clear();
+            ui->JobType->clear();
         }
-        l->exec(qur4);
     }
     else if(insert == 1)
     {
@@ -126,6 +135,11 @@ void employee::on_Perform_clicked()
             if(eng) l->exec("UPDATE Engineer SET Eng_Type='"+extra+"' WHERE ESSN='"+SSSn+"'");
             else  l->exec("UPDATE Physician SET Specialized_in='"+extra+"' WHERE PSSN='"+SSSn+"'");
         }
+        ui->Address->clear();
+        ui->Name->clear();
+        ui->PhoneNum->clear();
+        ui->Salary->clear();
+        ui->JobType->clear();
     }
     else if(insert == 2)
     {
@@ -223,7 +237,8 @@ void employee::on_Search_textChanged()
         break;
     }
     l->exec(qur);
-    QStandardItemModel *model = new QStandardItemModel(l->size(),7,this);
+    QString res;
+    QStandardItemModel *model = new QStandardItemModel(l->size(),8,this);
     model->setHorizontalHeaderItem(0, new QStandardItem(QString("SSN")));
     model->setHorizontalHeaderItem(1, new QStandardItem(QString("Name")));
     model->setHorizontalHeaderItem(2, new QStandardItem(QString("Address")));
@@ -231,6 +246,7 @@ void employee::on_Search_textChanged()
     model->setHorizontalHeaderItem(4, new QStandardItem(QString("Salary")));
     model->setHorizontalHeaderItem(5, new QStandardItem(QString("Job type")));
     model->setHorizontalHeaderItem(6, new QStandardItem(QString("Department no")));
+    model->setHorizontalHeaderItem(7, new QStandardItem(QString("Specialization")));
     int index = 0;
     while(l->next())
     {
@@ -241,6 +257,17 @@ void employee::on_Search_textChanged()
         QStandardItem *sala = new QStandardItem(QString(l->value("Salary").toString()));
         QStandardItem *type = new QStandardItem(QString(l->value("Job_Type").toString()));
         QStandardItem *Depno = new QStandardItem(QString(l->value("Dep_number").toString()));
+        QSqlQuery *l2 = new QSqlQuery();
+        l2->exec("SELECT * FROM Engineer WHERE ESSN = '"+l->value("SSN").toString()+"'");
+        l2->next();
+        if(l2->size() != 0) res = l2->value("Eng_Type").toString();
+        else
+        {
+            l2->exec("SELECT * FROM Physician WHERE PSSN = '"+l->value("SSN").toString()+"'");
+            l2->next();
+            res = l2->value("Specialized_in").toString();
+        }
+        QStandardItem *reso = new QStandardItem(res);
         model->setItem(index,0,ssn);
         model->setItem(index,1,name);
         model->setItem(index,2,add);
@@ -248,6 +275,7 @@ void employee::on_Search_textChanged()
         model->setItem(index,4,sala);
         model->setItem(index,5,type);
         model->setItem(index,6,Depno);
+        model->setItem(index,7,reso);
         index++;
     }
     ui->tableView->setModel(model);

@@ -89,21 +89,6 @@ void client::on_deleteRB_clicked()
     ui->selectTypeText->setText("");
 
 }
-void client::on_searchRB_clicked()
-{
-    action = 3 ;
-    ui->client_id->setEnabled(false);
-    ui->client_name->setEnabled(0);
-    ui->client_phone->setEnabled(0);
-    ui->client_address->setEnabled(0);
-    ui->selectTypeText->setEnabled(0);
-    ui->client_name->setText("");
-    ui->client_phone->setText("");
-    ui->client_address->setText("");
-    ui->selectTypeText->setText("");
-
-}
-
 
 void client::on_go_clicked()
 {
@@ -249,8 +234,8 @@ void client::on_searchText_textChanged()
     QString search_input = ui->searchText->toPlainText();
     QString query ;
     QVector<int> ids ;
-            int rows ;
-            if(search==0)
+    int rows ;
+    if(search==0)
             {
                 rows = 0 ;
                 query = "SELECT * FROM Client WHERE Name='"+search_input+"'" ;
@@ -301,9 +286,8 @@ void client::on_searchText_textChanged()
                         }
                     }
                 }
-                ui->search_output->setModel(model);
             }
-            else if(search==1)
+    else if(search==1)
             {
                 rows = 0 ;
                 query = "SELECT * FROM Client WHERE Phone='"+search_input+"'" ;
@@ -346,7 +330,7 @@ void client::on_searchText_textChanged()
                     }
                 }
             }
-            else if(search==2)
+    else if(search==2)
             {
                 rows=0;
                 query = "SELECT * FROM Client WHERE Address='"+search_input+"'" ;
@@ -389,18 +373,18 @@ void client::on_searchText_textChanged()
                 }
 
             }
-            else if(search==3)
+    else if(search==3)
             {
                 rows = 0 ;
                 query = "SELECT * FROM Clinic WHERE Doctor_Name='" +search_input+"'";
                 l->exec(query);
-                model->setHorizontalHeaderItem(0, new QStandardItem(QString("ID")));
-                model->setHorizontalHeaderItem(1, new QStandardItem(QString("DoctorName")));
-                model->setHorizontalHeaderItem(2, new QStandardItem(QString("ClientName")));
-                model->setHorizontalHeaderItem(3, new QStandardItem(QString("Phone")));
-                model->setHorizontalHeaderItem(4, new QStandardItem(QString("Address")));
                 while(l->next())
                 {
+                    model->setHorizontalHeaderItem(0, new QStandardItem(QString("ID")));
+                    model->setHorizontalHeaderItem(1, new QStandardItem(QString("DoctorName")));
+                    model->setHorizontalHeaderItem(2, new QStandardItem(QString("ClientName")));
+                    model->setHorizontalHeaderItem(3, new QStandardItem(QString("Phone")));
+                    model->setHorizontalHeaderItem(4, new QStandardItem(QString("Address")));
                     model->setItem( rows , 0 , new QStandardItem(QString(l->value(0).toString())) );
                     model->setItem( rows , 1 , new QStandardItem(QString(l->value(1).toString())) );
                     ids.push_back(l->value(0).toInt());
@@ -418,18 +402,18 @@ void client::on_searchText_textChanged()
                     }
                 }
             }
-            else if(search==4)
+    else if(search==4)
             {
                 rows = 0 ;
                 query = "SELECT * FROM Pharmacy WHERE Branch_Number='" +search_input+"'";
                 l->exec(query);
-                model->setHorizontalHeaderItem(0, new QStandardItem(QString("ID")));
-                model->setHorizontalHeaderItem(1, new QStandardItem(QString("BranchNumber")));
-                model->setHorizontalHeaderItem(2, new QStandardItem(QString("ClientName")));
-                model->setHorizontalHeaderItem(3, new QStandardItem(QString("Phone")));
-                model->setHorizontalHeaderItem(4, new QStandardItem(QString("Address")));
                 while(l->next())
                 {
+                    model->setHorizontalHeaderItem(0, new QStandardItem(QString("ID")));
+                    model->setHorizontalHeaderItem(1, new QStandardItem(QString("BranchNumber")));
+                    model->setHorizontalHeaderItem(2, new QStandardItem(QString("ClientName")));
+                    model->setHorizontalHeaderItem(3, new QStandardItem(QString("Phone")));
+                    model->setHorizontalHeaderItem(4, new QStandardItem(QString("Address")));
                     model->setItem( rows , 0 , new QStandardItem(QString(l->value(0).toString())) );
                     model->setItem( rows , 1 , new QStandardItem(QString(l->value(1).toString())) );
                     ids.push_back(l->value(0).toInt());
@@ -447,18 +431,18 @@ void client::on_searchText_textChanged()
                     }
                 }
             }
-            else if(search==5)
+    else if(search==5)
             {
                 rows = 0 ;
                 query = "SELECT * FROM Hospital WHERE Owner='" +search_input+"'";
                 l->exec(query);
-                model->setHorizontalHeaderItem(0, new QStandardItem(QString("ID")));
-                model->setHorizontalHeaderItem(1, new QStandardItem(QString("HospitalOwner")));
-                model->setHorizontalHeaderItem(2, new QStandardItem(QString("ClientName")));
-                model->setHorizontalHeaderItem(3, new QStandardItem(QString("Phone")));
-                model->setHorizontalHeaderItem(4, new QStandardItem(QString("Address")));
                 while(l->next())
                 {
+                    model->setHorizontalHeaderItem(0, new QStandardItem(QString("ID")));
+                    model->setHorizontalHeaderItem(1, new QStandardItem(QString("HospitalOwner")));
+                    model->setHorizontalHeaderItem(2, new QStandardItem(QString("ClientName")));
+                    model->setHorizontalHeaderItem(3, new QStandardItem(QString("Phone")));
+                    model->setHorizontalHeaderItem(4, new QStandardItem(QString("Address")));
                     model->setItem( rows , 0 , new QStandardItem(QString(l->value(0).toString())) );
                     model->setItem( rows , 1 , new QStandardItem(QString(l->value(1).toString())) );
                     ids.push_back(l->value(0).toInt());
@@ -476,4 +460,5 @@ void client::on_searchText_textChanged()
                     }
                 }
             }
+    ui->search_output->setModel(model);
 }

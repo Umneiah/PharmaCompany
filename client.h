@@ -40,7 +40,6 @@ private slots:
     void on_doctor_name_RB_clicked();
     void on_bransh_num_RB_clicked();
     void on_hospital_owner_RB_clicked();
-    void on_searchRB_clicked();
 
     void on_searchText_textChanged();
 

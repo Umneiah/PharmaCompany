@@ -56,6 +56,7 @@ void client::on_insertRB_clicked()
     ui->client_name->setEnabled(1);
     ui->client_phone->setEnabled(1);
     ui->client_address->setEnabled(1);
+    ui->selectTypeText->setEnabled(1);
     ui->client_name->setText("");
     ui->client_phone->setText("");
     ui->client_address->setText("");
@@ -68,6 +69,7 @@ void client::on_updateRB_clicked()
     ui->client_name->setEnabled(1);
     ui->client_phone->setEnabled(1);
     ui->client_address->setEnabled(1);
+    ui->selectTypeText->setEnabled(1);
     ui->client_name->setText("");
     ui->client_phone->setText("");
     ui->client_address->setText("");
@@ -76,7 +78,7 @@ void client::on_updateRB_clicked()
 void client::on_deleteRB_clicked()
 {
     action = 2 ;
-    ui->client_id->setEnabled(false);
+    ui->client_id->setEnabled(true);
     ui->client_name->setEnabled(0);
     ui->client_phone->setEnabled(0);
     ui->client_address->setEnabled(0);
@@ -105,12 +107,10 @@ void client::on_searchRB_clicked()
 
 void client::on_go_clicked()
 {
-    model->clear();
     QString name = ui->client_name->toPlainText();
     QString phone = ui->client_phone->toPlainText();
     QString address = ui->client_address->toPlainText();
     QString type_colomn = ui->selectTypeText->toPlainText();
-    QString search_input = ui->searchText->toPlainText();
     if(action == 0)
     {
         if(name!="" && phone!="" && address!="" && type_colomn!="")
@@ -191,12 +191,64 @@ void client::on_go_clicked()
         QString query = "DELETE FROM Client WHERE ID = " + id + ";" ;
         l->exec(query);
     }
-    else if(action == 3)
-    {
-        if(search_input!="")
-        {
-            QString query ;
-            QVector<int> ids ;
+    ui->client_id->clear();
+    combobox();
+}
+
+void client::on_ClinicRB_clicked()
+{
+    type = 0 ;
+    ui->selectTypeText->setPlaceholderText("Doctor Name");
+}
+void client::on_PharmacyRB_clicked()
+{
+    type = 1 ;
+    ui->selectTypeText->setPlaceholderText("Branch Number");
+}
+void client::on_HospitalRB_clicked()
+{
+    type = 2 ;
+    ui->selectTypeText->setPlaceholderText("Owner Name");
+}
+
+void client::on_Return_clicked()
+{
+    MainWindow * w = new MainWindow();
+    w->show();
+    this->close();
+}
+
+void client::on_nameRB_clicked()
+{
+        search = 0 ;
+}
+void client::on_phoneRB_clicked()
+{
+    search = 1 ;
+}
+void client::on_addressRB_clicked()
+{
+    search=2;
+}
+void client::on_doctor_name_RB_clicked()
+{
+    search = 3;
+}
+void client::on_bransh_num_RB_clicked()
+{
+    search = 4 ;
+}
+void client::on_hospital_owner_RB_clicked()
+{
+    search = 5 ;
+}
+
+void client::on_searchText_textChanged()
+{
+    model->clear();
+    QString search_input = ui->searchText->toPlainText();
+    QString query ;
+    QVector<int> ids ;
             int rows ;
             if(search==0)
             {
@@ -424,64 +476,4 @@ void client::on_go_clicked()
                     }
                 }
             }
-        }
-        else
-        {
-            QMessageBox messageBox;
-            messageBox.critical(0,"Error","Missing Details!!");
-            messageBox.setFixedSize(0,0);
-        }
-    }
-
-    ui->client_id->clear();
-    combobox();
 }
-
-void client::on_ClinicRB_clicked()
-{
-    type = 0 ;
-    ui->selectTypeText->setPlaceholderText("Doctor Name");
-}
-void client::on_PharmacyRB_clicked()
-{
-    type = 1 ;
-    ui->selectTypeText->setPlaceholderText("Branch Number");
-}
-void client::on_HospitalRB_clicked()
-{
-    type = 2 ;
-    ui->selectTypeText->setPlaceholderText("Owner Name");
-}
-
-void client::on_Return_clicked()
-{
-    MainWindow * w = new MainWindow();
-    w->show();
-    this->close();
-}
-
-void client::on_nameRB_clicked()
-{
-        search = 0 ;
-}
-void client::on_phoneRB_clicked()
-{
-    search = 1 ;
-}
-void client::on_addressRB_clicked()
-{
-    search=2;
-}
-void client::on_doctor_name_RB_clicked()
-{
-    search = 3;
-}
-void client::on_bransh_num_RB_clicked()
-{
-    search = 4 ;
-}
-void client::on_hospital_owner_RB_clicked()
-{
-    search = 5 ;
-}
-

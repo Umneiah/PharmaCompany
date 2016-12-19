@@ -42,6 +42,8 @@ private slots:
     void on_hospital_owner_RB_clicked();
     void on_searchRB_clicked();
 
+    void on_searchText_textChanged();
+
 private:
     Ui::client *ui;
 };
